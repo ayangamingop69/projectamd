@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriJoy | Smart Habits</title>
+    <meta name="description" content="NutriJoy helps you make better food choices and build healthier eating habits interactively.">
+    <!-- Modern Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar glass-panel" id="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-leaf text-gradient"></i> <span>NutriJoy</span>
+                <button class="close-sidebar" id="close-sidebar"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <ul class="nav-links">
+                <li class="active"><a href="#" data-view="view-dashboard"><i class="fa-solid fa-border-all"></i> Dashboard</a></li>
+                <li><a href="#" data-view="view-meals"><i class="fa-solid fa-apple-whole"></i> My Meals</a></li>
+                <li><a href="#" data-view="view-insights"><i class="fa-solid fa-chart-pie"></i> Insights</a></li>
+                <li><a href="#" data-view="view-goals"><i class="fa-solid fa-bullseye"></i> Goals</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Dashboard View -->
+            <section id="view-dashboard" class="view-section active">
+            <header class="top-header">
+                <div class="greeting">
+                    <h1 id="greeting-text">Good Morning! <span class="emoji">☀️</span></h1>
+                    <p>You're on track. Let's make today count.</p>
+                </div>
+                <div class="streak-badge glass-panel">
+                    <div class="fire-icon"><i class="fa-solid fa-fire"></i></div>
+                    <div class="streak-info">
+                        <span class="streak-num" id="streak-count">12</span>
+                        <span class="streak-label">Day Streak</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="dashboard-grid">
+                <!-- Calorie & Macro Summary -->
+                <div class="card glass-panel summary-card">
+                    <div class="card-header">
+                        <h2>Daily Summary</h2>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+                    
+                    <div class="summary-content">
+                        <div class="progress-ring-wrapper">
+                            <svg class="progress-ring" width="180" height="180">
+                                <circle class="ring-bg" cx="90" cy="90" r="80"></circle>
+                                <circle class="ring-fill calorie-ring" id="calorie-circle" cx="90" cy="90" r="80"></circle>
+                            </svg>
+                            <div class="ring-inner">
+                                <span class="value" id="calories-left">1,240</span>
+                                <span class="label">kcal left</span>
+                            </div>
+                        </div>
+
+                        <div class="macros-container">
+                            <div class="macro-item">
+                                <div class="macro-header">
+                                    <div class="macro-title"><span class="dot dot-protein"></span> Protein</div>
+                                    <div class="macro-val" id="protein-text">60/150g</div>
+                                </div>
+                                <div class="macro-bar-bg"><div class="macro-bar-fill fill-protein" id="protein-bar" style="width: 40%;"></div></div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-header">
+                                    <div class="macro-title"><span class="dot dot-carbs"></span> Carbs</div>
+                                    <div class="macro-val" id="carbs-text">120/200g</div>
+                                </div>
+                                <div class="macro-bar-bg"><div class="macro-bar-fill fill-carbs" id="carbs-bar" style="width: 60%;"></div></div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-header">
+                                    <div class="macro-title"><span class="dot dot-fats"></span> Fats</div>
+                                    <div class="macro-val" id="fats-text">30/65g</div>
+                                </div>
+                                <div class="macro-bar-bg"><div class="macro-bar-fill fill-fats" id="fats-bar" style="width: 46%;"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contextual Suggestions -->
+                <div class="card glass-panel suggestions-card">
+                    <div class="card-header">
+                        <h2>Smart Bites <span class="time-badge" id="meal-time-badge">Lunch</span></h2>
+                    </div>
+                    <p class="context-desc">Recommended based on your remaining macros and habits.</p>
+                    
+                    <div class="suggestions-list">
+                        <div class="suggestion-item">
+                            <div class="sugg-icon bg-orange"><i class="fa-solid fa-bowl-food"></i></div>
+                            <div class="sugg-info">
+                                <h3>Grilled Chicken Bowl</h3>
+                                <p>High Protein • ~450 kcal</p>
+                            </div>
+                            <button class="icon-btn add-meal-btn" aria-label="Add Meal"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <div class="suggestion-item">
+                            <div class="sugg-icon bg-green"><i class="fa-solid fa-seedling"></i></div>
+                            <div class="sugg-info">
+                                <h3>Avocado Quinoa Salad</h3>
+                                <p>Healthy Fats • ~380 kcal</p>
+                            </div>
+                            <button class="icon-btn add-meal-btn" aria-label="Add Meal"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <div class="suggestion-item">
+                            <div class="sugg-icon bg-purple"><i class="fa-solid fa-blender"></i></div>
+                            <div class="sugg-info">
+                                <h3>Berry Protein Smoothie</h3>
+                                <p>Quick Energy • ~250 kcal</p>
+                            </div>
+                            <button class="icon-btn add-meal-btn" aria-label="Add Meal"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Water Tracker -->
+                <div class="card glass-panel water-card">
+                    <div class="card-header">
+                        <h2>Hydration</h2>
+                        <span class="goal-text">Goal: 2000ml</span>
+                    </div>
+                    
+                    <div class="water-interactive-area">
+                        <div class="bottle-container">
+                            <div class="bottle">
+                                <div class="water-level" id="water-level" style="height: 37.5%;">
+                                    <div class="wave wave1"></div>
+                                    <div class="wave wave2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="water-actions">
+                            <div class="water-stats">
+                                <h3 id="water-consumed">750 <span class="unit">ml</span></h3>
+                                <p>3 of 8 glasses</p>
+                            </div>
+                            <button class="btn-glow" id="add-water-btn">
+                                <i class="fa-solid fa-droplet"></i> Add 250ml
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Log Action -->
+                <div class="card glass-panel quick-log-card">
+                    <div class="card-header">
+                        <h2>Log Activity</h2>
+                    </div>
+                    <div class="quick-log-grid">
+                        <div class="log-action" tabindex="0">
+                            <div class="log-icon"><i class="fa-solid fa-apple-whole"></i></div>
+                            <span>Snack</span>
+                        </div>
+                        <div class="log-action" tabindex="0">
+                            <div class="log-icon"><i class="fa-solid fa-utensils"></i></div>
+                            <span>Meal</span>
+                        </div>
+                        <div class="log-action highlight-action" tabindex="0">
+                            <div class="log-icon"><i class="fa-solid fa-camera"></i></div>
+                            <span>Snap Food</span>
+                        </div>
+                        <div class="log-action" tabindex="0">
+                            <div class="log-icon"><i class="fa-solid fa-barcode"></i></div>
+                            <span>Scan</span>
+                        </div>
+                    </div>
+                </div>
+            </section> <!-- End dashboard-grid -->
+            </section> <!-- End view-dashboard -->
+
+            <!-- My Meals View -->
+            <section id="view-meals" class="view-section">
+                <header class="top-header">
+                    <div class="greeting">
+                        <h1>My Meals 🥗</h1>
+                        <p>Track everything you eat.</p>
+                    </div>
+                </header>
+                <div class="card glass-panel page-card">
+                    <h2>Add Custom Meal</h2>
+                    <form id="add-meal-form" class="custom-form">
+                        <div class="form-group">
+                            <label>Food Name</label>
+                            <input type="text" id="custom-meal-name" placeholder="e.g. Avocado Toast" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Calories (kcal)</label>
+                            <input type="number" id="custom-meal-cals" placeholder="e.g. 350" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Food Picture URL (Optional)</label>
+                            <input type="url" id="custom-meal-pic" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <button type="submit" class="btn-glow">Add Food</button>
+                    </form>
+                    
+                    <div class="meal-timeline" id="meal-timeline">
+                        <h3>Today's Log</h3>
+                        <!-- Timeline items added via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Insights View -->
+            <section id="view-insights" class="view-section">
+                <header class="top-header">
+                    <div class="greeting">
+                        <h1>Insights 📊</h1>
+                        <p>Analyze your weekly progress.</p>
+                    </div>
+                </header>
+                <div class="card glass-panel page-card empty-state-card">
+                    <div class="empty-state">
+                        <i class="fa-solid fa-chart-line empty-icon"></i>
+                        <h2>No Data Yet</h2>
+                        <p>Start logging your meals and water to generate insights over time.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Goals View -->
+            <section id="view-goals" class="view-section">
+                <header class="top-header">
+                    <div class="greeting">
+                        <h1>Goals 🎯</h1>
+                        <p>Set your daily targets.</p>
+                    </div>
+                </header>
+                <div class="card glass-panel page-card">
+                    <form id="goals-form" class="custom-form">
+                        <div class="form-group">
+                            <label>Daily Calorie Goal</label>
+                            <input type="number" id="goal-calories" value="2000" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Daily Water Goal (ml)</label>
+                            <input type="number" id="goal-water" value="2000" required>
+                        </div>
+                        <button type="submit" class="btn-glow">Update Goals</button>
+                    </form>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toast-msg">Logged successfully!</span>
+    </div>
+
+    <!-- Food Logging Modal -->
+    <div class="modal-overlay" id="food-modal">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h2 id="modal-title">Log Food</h2>
+                <button class="close-modal" id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="food-search" placeholder="Search for a food item...">
+                </div>
+                <div class="food-results" id="food-results">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
